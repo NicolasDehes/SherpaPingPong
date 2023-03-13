@@ -1,21 +1,8 @@
 import express from 'express';
-import { Sequelize } from 'sequelize';
-
-//init sequelize
-export const sequelize = new Sequelize('sherpapingpong', 'root', '', {
-    host: 'localhost',
-    dialect: 'mysql'
-});
-
+import router from './router';
 
 const app = express();
 const port = 3000;
-
-const router = express.Router();
-
-router.get('/', (req, res) => {
-    res.send('Hello World!');
-});
 
 app.use('/', router);
 

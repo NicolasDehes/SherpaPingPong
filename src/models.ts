@@ -1,8 +1,12 @@
-// create a sequelize model user
 import * as Sequelize from 'sequelize';
-import {sequelize} from './index';
 
-const User = sequelize.define('user', {
+export const sequelize = new Sequelize.Sequelize('sherpapingpong', 'root', '', {
+    host: 'localhost',
+    dialect: 'mysql',
+    logging: false
+});
+
+export const User = sequelize.define('user', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -10,11 +14,32 @@ const User = sequelize.define('user', {
     },
     name: {
         type: Sequelize.STRING
-    },
-    email: {
-        type: Sequelize.STRING
-    },
-    password: {
-        type: Sequelize.STRING
     }
 });
+
+export const Match = sequelize.define('match', {
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    player1: {
+        type: Sequelize.INTEGER
+    },
+    player2: {
+        type: Sequelize.INTEGER
+    },
+    score1: {
+        type: Sequelize.INTEGER
+    },
+    score2: {
+        type: Sequelize.INTEGER
+    },
+    winner: {
+        type: Sequelize.INTEGER
+    }
+});
+
+Match.belongsTo(User, {foreignKey: 'user1'});
+Match.belongsTo(User, {foreignKey: 'user2'});
+Match.belongsTo(User, {foreignKey: 'winner'});
