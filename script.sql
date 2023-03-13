@@ -1,0 +1,18 @@
+USE sherpapingpong;
+
+CREATE TABLE users(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(32), nickname VARCHAR(32), 
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP, 
+    updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE matches(
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    player1 INT REFERENCES users(id), 
+    player2 INT REFERENCES users(id), 
+    score1 INT, 
+    score2 INT, 
+    winner INT REFERENCES users(id), 
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP, 
+    updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+);
