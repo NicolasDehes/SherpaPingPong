@@ -40,6 +40,6 @@ export const Match = sequelize.define('match', {
     }
 });
 
-Match.belongsTo(User, {foreignKey: 'user1'});
-Match.belongsTo(User, {foreignKey: 'user2'});
-Match.belongsTo(User, {foreignKey: 'winner'});
+Match.belongsTo(User, {foreignKey: 'player1', as: "Player1"});
+Match.belongsTo(User, {foreignKey: 'player2', as: "Player2"});
+Match.belongsTo(User, {foreignKey: 'winner', as: "Winner"});
